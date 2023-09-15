@@ -1,0 +1,26 @@
+version: '3'
+services:
+  spark:
+    image: bitnami/spark:latest
+    container_name: spark-container
+    ports:
+      - "4040:4040" # Spark Web UI
+    environment:
+      - SPARK_MODE=master
+      - SPARK_RPC_AUTH_SECRET=mysecret
+    volumes:
+      - ./spark-app:/app  # Mount your Spark application directory here
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container
+    ports:
+      - "3306:3306"  # MySQL port
+    environment:
+      MYSQL_ROOT_PASSWORD: mypassword
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: myuserpassword
+    volumes:
+      - ./mysql-data:/var/lib/mysql  # Mount a data directory for MySQL
+
