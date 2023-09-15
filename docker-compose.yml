@@ -17,10 +17,9 @@ services:
     ports:
       - "3306:3306"  # MySQL port
     environment:
-      MYSQL_ROOT_PASSWORD: mypassword
-      MYSQL_DATABASE: mydatabase
-      MYSQL_USER: myuser
-      MYSQL_PASSWORD: myuserpassword
+      MYSQL_ROOT_PASSWORD: verystrongrootpassword123*
+      MYSQL_DATABASE: star_classification
+      MYSQL_USER: nasa
+      MYSQL_PASSWORD: verystrongpassword123*
     volumes:
       - ./mysql-data:/var/lib/mysql  # Mount a data directory for MySQL
-
