@@ -69,7 +69,7 @@ df_indexed = indexer_model.transform(db_data)
 df_indexed.show()
 
 # Liste des colonnes à supprimer
-columns_to_drop = ["run_ID", "rerun_ID", "cam_col", "field_ID", "spec_obj_ID", "plate", "fiber_ID"]
+columns_to_drop = ["obj_ID", "run_ID", "rerun_ID", "cam_col", "field_ID", "spec_obj_ID", "plate", "fiber_ID"]
 
 # Supprimer les colonnes spécifiées
 df_indexed = df_indexed.drop(*columns_to_drop)
@@ -77,7 +77,12 @@ df_indexed = df_indexed.drop(*columns_to_drop)
 # Affichez le DataFrame résultant
 df_indexed.show()
 
+X = df_indexed
+y = df_indexed['class_integer'].values
 
+train_df, test_df = df_indexed.randomSplit([0.8, 0.2], seed=42)
+
+train_df, cv_df = df_indexed.randomSplit([0.8, 0.2], seed=42)
 
 # Stop the Spark session
 spark.stop()
