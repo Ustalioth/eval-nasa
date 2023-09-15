@@ -1,7 +1,8 @@
 version: '3'
 services:
   spark:
-    image: bitnami/spark:latest
+    build:
+      dockerfile: docker/spark/Dockerfile
     container_name: spark-container
     ports:
       - "4040:4040" # Spark Web UI
@@ -9,7 +10,7 @@ services:
       - SPARK_MODE=master
       - SPARK_RPC_AUTH_SECRET=mysecret
     volumes:
-      - ./spark-app:/app  # Mount your Spark application directory here
+      - app:/app  # Mount your Spark application directory here
 
   mysql:
     image: mariadb:latest
@@ -22,4 +23,4 @@ services:
       MYSQL_USER: nasa
       MYSQL_PASSWORD: verystrongpassword123*
     volumes:
-      - ./mariadb-data:/var/lib/mariadb  # Mount a data directory for mariadb
+      - ./docker/mariadb/data:/var/lib/mariadb  # Mount a data directory for mariadb
