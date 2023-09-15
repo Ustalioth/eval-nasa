@@ -5,12 +5,16 @@ services:
       dockerfile: docker/spark/Dockerfile
     container_name: spark-container
     ports:
-      - "4040:4040" # Spark Web UI
+      - "8081:8081" # Spark Web UI
     environment:
       - SPARK_MODE=master
       - SPARK_RPC_AUTH_SECRET=mysecret
+    depends_on:
+      - mysql
+    links:
+      - "mysql"
     volumes:
-      - app:/app  # Mount your Spark application directory here
+      - ./app:/app  # Mount your Spark application directory here
 
   mysql:
     image: mariadb:latest

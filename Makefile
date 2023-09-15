@@ -8,7 +8,7 @@ build:
 	docker-compose build
 
 shell:
-	docker-compose exec -it spark-container /bin/bash
+	docker exec -it spark-container /bin/bash
 
 import_data:
-	docker-compose exec spark-container python /app/import_data.py
+	docker exec spark-container python /app/import_data.py
