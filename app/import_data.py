@@ -28,7 +28,7 @@ connection_properties = {
 csv_data.write.mode("overwrite").option("driver", "com.mysql.cj.jdbc.Driver").jdbc(jdbc_url, "target_table_name", properties=connection_properties)
 
 # Lire les données depuis la base de données MariaDB
-db_data = spark.read.jdbc(url=jdbc_url, table="target_table_name", properties=connection_properties)
+db_data = spark.read.option("driver", "com.mysql.cj.jdbc.Driver").jdbc(url=jdbc_url, table="target_table_name", properties=connection_properties)
 
 # Afficher les données récupérées
 db_data.show()
@@ -48,7 +48,7 @@ plt.xlabel("Classes")
 plt.ylabel("Nombre d'occurrences")
 plt.title("Répartition des classes")
 plt.xticks(rotation=45)
-plt.savefig("/app/class_distribution.png")
+# plt.savefig("/app/class_distribution.png")
 
 
 total_samples = db_data.count()
@@ -58,7 +58,7 @@ plt.figure(figsize=(8, 8))
 plt.pie(class_proportions, labels=class_names, autopct='%1.1f%%', startangle=140)
 plt.axis('equal')
 plt.title("Proportion des classes")
-plt.savefig("/app/class_proportion.png")
+# plt.savefig("/app/class_proportion.png")
 plt.show()
 
 
