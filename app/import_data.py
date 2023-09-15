@@ -1,5 +1,6 @@
 from pyspark.sql import SparkSession
 import matplotlib.pyplot as plt
+from pyspark.ml.feature import StringIndexer
 
 # Create a Spark session
 spark = SparkSession.builder \
@@ -60,6 +61,14 @@ plt.axis('equal')
 plt.title("Proportion des classes")
 # plt.savefig("/app/class_proportion.png")
 plt.show()
+
+indexer = StringIndexer(inputCol='class', outputCol='class_integer')
+indexer_model = indexer.fit(db_data)
+df_indexed = indexer_model.transform(db_data)
+
+df_indexed.show()
+
+
 
 
 # Stop the Spark session
