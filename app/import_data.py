@@ -3,11 +3,11 @@ from pyspark.sql import SparkSession
 # Create a Spark session
 spark = SparkSession.builder \
     .appName("CSV to MariaDB") \
-     .config("spark.jars", "./mysql-connector-j-8.1.0.jar") \
+     .config("spark.jars", "/app/mysql-connector-j-8.1.0.jar") \
      .getOrCreate()
 
 # Read CSV data
-csv_data = spark.read.option("header", "true").csv("star_classification.csv")
+csv_data = spark.read.option("header", "true").csv("/app/star_classification.csv")
 
 # Configure the MariaDB JDBC connection
 jdbc_hostname = "mysql"
