@@ -68,6 +68,14 @@ df_indexed = indexer_model.transform(db_data)
 
 df_indexed.show()
 
+# Liste des colonnes à supprimer
+columns_to_drop = ["run_ID", "rerun_ID", "cam_col", "field_ID", "spec_obj_ID", "plate", "fiber_ID"]
+
+# Supprimer les colonnes spécifiées
+df_indexed = df_indexed.drop(*columns_to_drop)
+
+# Affichez le DataFrame résultant
+df_indexed.show()
 
 
 
