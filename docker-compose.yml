@@ -12,8 +12,8 @@ services:
       - ./spark-app:/app  # Mount your Spark application directory here
 
   mysql:
-    image: mysql:latest
-    container_name: mysql-container
+    image: mariadb:latest
+    container_name: mariadb-container
     ports:
       - "3306:3306"  # MySQL port
     environment:
@@ -22,4 +22,4 @@ services:
       MYSQL_USER: nasa
       MYSQL_PASSWORD: verystrongpassword123*
     volumes:
-      - ./mysql-data:/var/lib/mysql  # Mount a data directory for MySQL
+      - ./mariadb-data:/var/lib/mariadb  # Mount a data directory for mariadb
